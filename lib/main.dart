@@ -1,6 +1,12 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:screen_protector/screen_protector.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // スクリーンショット・画面録画を防止（Android: FLAG_SECURE / iOS: スクショ防止）
+  await ScreenProtector.preventScreenshotOn();
+  // アプリスイッチャーでの内容漏洩を防止（Android）
+  await ScreenProtector.protectDataLeakageOn();
   runApp(const MyApp());
 }
 
